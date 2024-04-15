@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .calculator-container {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6 offset-md-3 calculator-container">
+                <h2 class="text-center mb-4">Simple Calculator</h2>
+                <form id="calculator-form">
+                    <div class="form-group">
+                        <label for="num1">Enter first number:</label>
+                        <input type="text" class="form-control" id="num1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="operation">Select operation:</label>
+                        <select class="form-control" id="operation">
+                            <option value="addition">Addition (+)</option>
+                            <option value="subtraction">Subtraction (-)</option>
+                            <option value="multiplication">Multiplication (*)</option>
+                            <option value="division">Division (/)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="num2">Enter second number:</label>
+                        <input type="text" class="form-control" id="num2" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Calculate</button>
+                    <button type="button" id="clear-btn" class="btn btn-secondary btn-block">Clear</button>
+                </form>
+                <div id="result" class="mt-4"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('calculator-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Get input values
+            let num1 = parseFloat(document.getElementById('num1').value);
+            let num2 = parseFloat(document.getElementById('num2').value);
+            let operation = document.getElementById('operation').value;
+            let result = '';
+
+            // Error handling for non-numeric inputs
+            if (isNaN(num1) || isNaN(num2)) {
+                result = 'Error: Please enter valid numbers';
+            } else {
+                // Perform calculation
+                switch(operation) {
+                    case 'addition':
+                        result = num1 + num2;
+                        break;
+                    case 'subtraction':
+                        result = num1 - num2;
+                        break;
+                    case 'multiplication':
+                        result = num1 * num2;
+                        break;
+                    case 'division':
+                        if (num2 !== 0) {
+                            result = num1 / num2;
+                        } else {
+                            result = 'Error: Division by zero';
+                        }
+                        break;
+                    default:
+                        result = 'Error: Invalid operation';
+                }
+            }
+
+            // Display result
+            document.getElementById('result').innerHTML = `<p>Result: ${result}</p>`;
+        });
+
+        // Clear button functionality
+        document.getElementById('clear-btn').addEventListener('click', function() {
+            document.getElementById('num1').value = '';
+            document.getElementById('num2').value = '';
+            document.getElementById('operation').selectedIndex = 0;
+            document.getElementById('result').innerHTML = '';
+        });
+    </script>
+</body>
+</html>
+

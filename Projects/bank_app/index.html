@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Account Management</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="account">
+            <h2>Account 1</h2>
+            <p>Account Number: <span id="acc1-number">1001</span></p>
+            <p>Owner Name: <span id="acc1-owner">John Doe</span></p>
+            <p>Balance: <span id="acc1-balance">$1000</span></p>
+            <input type="number" id="acc1-amount" placeholder="Enter amount">
+            <button onclick="deposit(1)">Deposit</button>
+            <button onclick="withdraw(1)">Withdraw</button>
+        </div>
+        <div class="account">
+            <h2>Account 2</h2>
+            <p>Account Number: <span id="acc2-number">1002</span></p>
+            <p>Owner Name: <span id="acc2-owner">Jane Smith</span></p>
+            <p>Balance: <span id="acc2-balance">$500</span></p>
+            <input type="number" id="acc2-amount" placeholder="Enter amount">
+            <button onclick="deposit(2)">Deposit</button>
+            <button onclick="withdraw(2)">Withdraw</button>
+        </div>
+    </div>
+    
+    <script src="bank.js"></script>
+</body>
+</html>
+
